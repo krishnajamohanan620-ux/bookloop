@@ -4,6 +4,7 @@ COPY pom.xml .
 COPY src ./src
 RUN mvn -DskipTests clean package spring-boot:repackage
 RUN jar tf target/campus-book-exchange-0.0.1-SNAPSHOT.jar | grep -i "Application.class" || true
+RUN jar tf target/campus-book-exchange-0.0.1-SNAPSHOT.jar | grep -i "Application.class" || true
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
