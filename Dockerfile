@@ -2,7 +2,8 @@ FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-RUN mvn -DskipTests package
+RUN mvn -DskipTests clean package spring-boot:repackage
+RUN jar tf target/campus-book-exchange-0.0.1-SNAPSHOT.jar | grep "CampusBookExchangeApplication.class"
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
